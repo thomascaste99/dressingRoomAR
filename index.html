@@ -18,12 +18,12 @@
     <a-scene
         vr-mode-ui="enabled: false"
 		embedded
-        arjs='sourceType: webcam; sourceWidth:750; sourceHeight:1334; displayWidth: 750; displayHeight: 1334; debugUIEnabled: false;'>
+        arjs='sourceType: webcam; sourceWidth:1920; sourceHeight:1080; displayWidth: 1920; displayHeight: 1080; debugUIEnabled: false;'>
         
         <a-camera gps-camera rotation-reader></a-camera>
         <!--- <a-entity gltf-model="./assets/magnemite/scene.gltf" rotation="0 180 0" scale="0.15 0.15 0.15" gps-entity-place="longitude: 12.400907; latitude: 44.123120;" animation-mixer/>
         --->
-    </a-scene>
+        </a-scene>
 </body>
 
 <script>
@@ -33,7 +33,7 @@
     const net = await posenet.load({
         architecture: 'MobileNetV1',
         outputStride: 16,
-        inputResolution: { width: 1334, height: 750 },
+        inputResolution: { width: 1920, height: 1080 },
         multiplier: 0.75
     });
 
