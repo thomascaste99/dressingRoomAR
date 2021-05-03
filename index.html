@@ -3,37 +3,27 @@
 <head>
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>GeoAR.js demo</title>
-    <script src='https://aframe.io/releases/0.9.2/aframe.min.js'></script>
-    <script src="https://raw.githack.com/jeromeetienne/AR.js/master/aframe/build/aframe-ar.min.js"></script>
-    <script src="https://raw.githack.com/donmccurdy/aframe-extras/master/dist/aframe-extras.loaders.min.js"></script>
-    <script>
-        THREEx.ArToolkitContext.baseURL = 'https://raw.githack.com/jeromeetienne/ar.js/master/three.js/'
-    </script>
+    <title>AR.js demo</title>
+    <link rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/posenet"></script>
+    <script defer src="js/script.js"></script>
 </head>
 
-<body style='margin: 0; overflow: hidden;'>
-    <a-scene
-        vr-mode-ui="enabled: false"
-		embedded
-        arjs='sourceType: webcam; sourceWidth:1920; sourceHeight:1080; displayWidth: 1920; displayHeight: 1080; debugUIEnabled: false;'>
-        
-        <a-camera gps-camera rotation-reader></a-camera>
-        <!--- <a-entity gltf-model="./assets/magnemite/scene.gltf" rotation="0 180 0" scale="0.15 0.15 0.15" gps-entity-place="longitude: 12.400907; latitude: 44.123120;" animation-mixer/>
-        --->
-        </a-scene>
+<body>
+  <video id="video" src="video" width="720" height="560" autoplay muted></video>
+  <canvas id="canvas"></canvas>
 </body>
 
 <script>
+/*
     var flipHorizontal = false;
     var imageElement = document.getElementById('cat');
 
     const net = await posenet.load({
         architecture: 'MobileNetV1',
         outputStride: 16,
-        inputResolution: { width: 1920, height: 1080 },
+        inputResolution: { width: 640, height: 480 },
         multiplier: 0.75
     });
 
@@ -44,6 +34,7 @@
       return pose;
     }).then(function(pose){
       console.log(pose);
-    })
+    })*/
+
 </script>
 </html>
