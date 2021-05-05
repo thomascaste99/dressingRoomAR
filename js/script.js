@@ -26,7 +26,7 @@ const detect = async (net) => {
     const pose = await net.estimateSinglePose(video);
     console.log(pose);
 
-    drawCanvas(pose, video, 720, 560, canvas);
+    drawCanvas(pose, video, video.videoWidth, video.videoHeight, canvas);
 }
 
 runPosenet();
