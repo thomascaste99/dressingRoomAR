@@ -2,6 +2,9 @@ video {
     width: 100%;
     height: auto;
     position: absolute;
+    display: flex;
+    justify-content: center;
+    padding-top: 80px;
     top: 0;
     left: 0;
 }
