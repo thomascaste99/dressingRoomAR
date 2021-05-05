@@ -9,7 +9,7 @@ function startVideo() {
     )
 }
 
-startVideo()
+startVideo();
 
 const runPosenet = async () => {
     const net = await posenet.load({
