@@ -2,6 +2,9 @@ const video = document.getElementById("video");
 const canvas = document.getElementById("canvas");
 
 function startVideo() {
+    video.width = 640;
+    video.height = 360;
+
     navigator.getUserMedia(
         { video: {} },
         stream => video.srcObject = stream,
@@ -26,25 +29,25 @@ const detect = async (net) => {
     const pose = await net.estimateSinglePose(video);
     console.log(pose);
 
-    drawCanvas(pose, video, video.videoWidth, video.videoHeight, canvas);
+    drawCanvas(pose);
 }
 
 runPosenet();
 
-const drawCanvas = (pose, video, videoWidth, videoHeight, canvas) => {
+const drawCanvas = (pose) => {
     const ctx = canvas.getContext("2d");
-    canvas.width = videoWidth;
-    canvas.height = videoHeight;
+    canvas.width = video.videoWidth;
+    canvas.height = video.videoHeight;
 
     drawKeypoints(pose["keypoints"], ctx);
 }
 
-function drawKeypoints(k, ctx) {
+function drawKeypoints(keypoints, ctx) {
 
     ctx.fillStyle = "#ff0000";
     ctx.strokeStyle = "#000000";
 
-    k.forEach(elem => {
+    keypoints.forEach(elem => {
         const { y, x } = elem.position;
 
         ctx.beginPath();
