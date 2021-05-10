@@ -32,7 +32,9 @@ const detect = async (net) => {
     drawCanvas(pose);
 }
 
-runPosenet();
+video.addEventListener('loadeddata', (event) => {
+    runPosenet();
+});
 
 const drawCanvas = (pose) => {
     const ctx = canvas.getContext("2d");
