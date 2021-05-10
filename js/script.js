@@ -2,6 +2,8 @@ const video = document.getElementById("video");
 const canvas = document.getElementById("canvas");
 
 function startVideo() {
+    video.width = 640;
+    video.height = 360;
 
     navigator.getUserMedia(
         { video: {} },
