@@ -1,46 +1,52 @@
-import * as THREE from 'three';
+window.onload = function() {
+    
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
 
-scene = new THREE.Scene();
-scene.background = new THREE.Color(0xdddddd);
+    const renderer = new THREE.WebGLRenderer();
+    renderer.setSize( window.innerWidth, window.innerHeight );
+    document.body.appendChild( renderer.domElement );
 
-camera = new THREE.PerspectiveCamera(40, window.innerWidth/window.innerHeight, 1, 5000);
-camera.rotation.y = 45/180*Math.PI;
-camera.position.x = 800;
-camera.position.y = 100;
-camera.position.z = 1000;
+    const geometry = new THREE.BoxGeometry(1, 1, 1);
+    const material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
 
-renderer = new THREE.WebGLRenderer({antialias:true});
-renderer.setSize(window.innerWidth, window.innerHeight);
-document.body.appendChild(renderer.domElement);
+    camera.position.z = 200;
 
-hlight = new THREE.AmbientLight (0x404040,100);
-scene.add(hlight);
+    var keyLight = new THREE.DirectionalLight(new THREE.Color('hsl(30, 100%, 75%)'), 1.0);
+    keyLight.position.set(-100, 0, 100);
 
-directionalLight = new THREE.DirectionalLight(0xffffff,100);
-directionalLight.position.set(0,1,0);
-directionalLight.castShadow = true;
-scene.add(directionalLight);
+    var fillLight = new THREE.DirectionalLight(new THREE.Color('hsl(240, 100%, 75%)'), 0.75);
+    fillLight.position.set(100, 0, 100);
 
-light = new THREE.PointLight(0xc4c4c4,10);
-light.position.set(0,300,500);
-scene.add(light);
+    var backLight = new THREE.DirectionalLight(0xffffff, 1.0);
+    backLight.position.set(100, 0, -100).normalize();
 
-light2 = new THREE.PointLight(0xc4c4c4,10);
-light2.position.set(500,100,0);
-scene.add(light2);
+    scene.add(keyLight);
+    scene.add(fillLight);
+    scene.add(backLight);
 
-light3 = new THREE.PointLight(0xc4c4c4,10);
-light3.position.set(0,100,-500);
-scene.add(light3);
+    var mtlLoader = new THREE.MTLLoader();
+    mtlLoader.load('assets/nikeShirt/nikeShirt.mtl', function (materials) {
 
-light4 = new THREE.PointLight(0xc4c4c4,10);
-light4.position.set(-500,300,500);
-scene.add(light4);
+        materials.preload();
 
-let loader = new THREE.GLTFLoader();
-loader.load('../assets/nikeshirt.gltf', function(gltf){
-  car = gltf.scene.children[0];
-  car.scale.set(0.5,0.5,0.5);
-  scene.add(gltf.scene);
-  animate();
-});
+        var objLoader = new THREE.OBJLoader2();
+        objLoader.setMaterials(materials);
+        objLoader.setPath('assets/nikeShirt');
+        objLoader.load('nikeShirt.obj', function (object) {
+
+            scene.add(object);
+            object.position.y -= 60;
+
+        });
+
+    });
+
+    const animate = function () {
+        requestAnimationFrame( animate );
+
+        renderer.render( scene, camera );
+    };
+
+    animate();
+}

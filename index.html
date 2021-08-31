@@ -7,8 +7,10 @@
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/posenet"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/87/three.min.js"></script>
+    <script src="https://threejs.org/examples/js/loaders/MTLLoader.js"></script>
     <script defer src="js/posenet.js"></script>
-    <script defer src="js/three.js"></script>
+    <script src="js/three.js"></script>
 </head>
 
 <body>
@@ -16,26 +18,4 @@
   <canvas id="canvas"></canvas>
 </body>
 
-<script>
-/*
-    var flipHorizontal = false;
-    var imageElement = document.getElementById('cat');
-
-    const net = await posenet.load({
-        architecture: 'MobileNetV1',
-        outputStride: 16,
-        inputResolution: { width: 640, height: 480 },
-        multiplier: 0.75
-    });
-
-    posenet.load().then(function(net) {
-      const pose = net.estimateSinglePose(imageElement, {
-        flipHorizontal: true
-      });
-      return pose;
-    }).then(function(pose){
-      console.log(pose);
-    })*/
-
-</script>
 </html>

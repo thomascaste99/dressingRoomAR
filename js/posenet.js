@@ -27,9 +27,9 @@ const runPosenet = async () => {
 
 const detect = async (net) => {
     const pose = await net.estimateSinglePose(video);
-    console.log(pose);
+    //console.log(pose);
 
-    drawCanvas(pose);
+    //drawCanvas(pose);
 }
 
 video.addEventListener('loadeddata', (event) => {
