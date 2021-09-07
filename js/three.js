@@ -25,15 +25,13 @@ window.onload = function() {
     scene.add(fillLight);
     scene.add(backLight);
 
-    var mtlLoader = new THREE.MTLLoader();
+    const mtlLoader = new THREE.MTLLoader();
     mtlLoader.load('assets/nikeShirt/nikeShirt.mtl', function (materials) {
 
         materials.preload();
 
-        var objLoader = new THREE.OBJLoader2();
-        objLoader.setMaterials(materials);
-        objLoader.setPath('assets/nikeShirt');
-        objLoader.load('nikeShirt.obj', function (object) {
+        const objLoader = new THREE.OBJLoader();
+        objLoader.load('assets/nikeShirt/nikeShirt.obj', function (object) {
 
             scene.add(object);
             object.position.y -= 60;
