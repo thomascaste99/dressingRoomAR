@@ -7,8 +7,9 @@ window.onload = function() {
 
     const renderer = new THREE.WebGLRenderer( { alpha: true } );
     renderer.setPixelRatio( window.devicePixelRatio );
-    renderer.setSize( window.innerWidth, window.innerHeight );
-    scene.background = new THREE.Color( 0xff0000 );
+    renderer.setSize( 1257, 707.06 );
+    renderer.setClearColor( 0x000000, 0 );
+    scene.background = null;
     document.body.appendChild( renderer.domElement );
 
     const geometry = new THREE.BoxGeometry(1, 1, 1);
@@ -30,12 +31,12 @@ window.onload = function() {
     scene.add(backLight);
 
     const mtlLoader = new THREE.MTLLoader();
-    mtlLoader.load('assets/nikeShirt/nikeShirt.mtl', function (materials) {
+    mtlLoader.load('assets/model/c.mtl', function (materials) {
 
         materials.preload();
 
         const objLoader = new THREE.OBJLoader();
-        objLoader.load('assets/nikeShirt/nikeShirt.obj', function (object) {
+        objLoader.load('assets/model/c.obj', function (object) {
 
             scene.add(object);
             object.position.y -= 60;
