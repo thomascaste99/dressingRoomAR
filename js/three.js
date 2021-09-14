@@ -4,6 +4,7 @@ window.onload = function() {
 
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
+    camera.position.set(2.5,2.5,2.5);
 
     const renderer = new THREE.WebGLRenderer( { alpha: true } );
     renderer.setPixelRatio( window.devicePixelRatio );
@@ -30,6 +31,7 @@ window.onload = function() {
     scene.add(fillLight);
     scene.add(backLight);
 
+    /*
     const mtlLoader = new THREE.MTLLoader();
     mtlLoader.load('assets/model/c.mtl', function (materials) {
 
@@ -43,6 +45,26 @@ window.onload = function() {
 
         });
 
+    });
+    */
+
+    const gltfLoader = new THREE.GLTFLoader();
+    gltfLoader.load('assets/model/model.glb', function (gltf) {
+
+        scene.add(gltf.scene);
+        gltf.scene.traverse(function(node) {
+
+            if (node instanceof THREE.Mesh) {
+              frontObject = node;
+              node.geometry.computeFaceNormals();
+              node.geometry.computeVertexNormals();
+            }
+ 
+        });
+
+        frontObject = gltf.scene;
+        console.log("LOADED");
+        frontObject.scale.set(1000, 1000, 1000);
     });
 
     const animate = function () {
